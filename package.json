@@ -14,7 +14,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "rustjson.helloWorld",
+        "command": "rustjson.Rust2Json",
         "title": "RustJson"
       }
     ]
