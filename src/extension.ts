@@ -13,27 +13,33 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('rustjson.Rust2Json', () => {
+	let disposable = vscode.commands.registerCommand('rustjson.Rust2Json', async () => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		// vscode.window.showInformationMessage('Hello World from RustJson!');
 
 
 		const editor = vscode.window.activeTextEditor;
-
-		if (editor) {
-			const selection = editor.selection;
-			const selectedCode = editor.document.getText(selection);
-
-			// Process selected code
-			if (!isJsonString(selectedCode)) {
-				return;
-
-			}
-
-			// console.log(selectedCode);
-			vscode.window.showInformationMessage(selectedCode);
+		if (!editor) {
+			return;
 		}
+
+		const selection = editor.selection;
+		const selectedCode = editor.document.getText(selection);
+
+		// Process selected code
+		// if (!isJsonString(selectedCode)) {
+		// 	return;
+		// }
+		// console.log(selectedCode);
+		vscode.window.showInformationMessage(selectedCode);
+
+		let webviewPanel = vscode.window.createWebviewPanel('RustJson', 'RustJson', vscode.ViewColumn.One, {
+			enableScripts: true
+		});
+		 // 在panel中加载并显示自定义窗口的HTML文件
+		// webviewPanel.webview.html = await getWebviewContent();
+		webviewPanel.webview.html = '<h1>RustJson</h1>';
 
 		const quickPick = vscode.window.createQuickPick();
 		quickPick.items = [
@@ -80,6 +86,12 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 			return true;
 		}
+
+		// function getWebviewContent() {
+		// 	const htmlPath = vscode.Uri.file(path.join(context.extensionPath, 'src', 'customView', 'customView.html'));
+		// 	const htmlContent = fs.readFileSync(htmlPath.with({ scheme: 'vscode-resource' }).toString());
+		// 	return htmlContent.toString();
+		// }
 	});
 
 
