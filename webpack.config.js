@@ -31,7 +31,7 @@ const extensionConfig = {
     rules: [
       {
         test: /\.ts$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, path.resolve('src/wasm/rust_json_lib_rs_bg.wasm')],
         use: [
           {
             loader: 'ts-loader'
