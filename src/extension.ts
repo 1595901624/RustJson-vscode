@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import wasm from './wasm/rust_json_lib_rs';
+import init, {parse_json_default} from './wasm/rust_json_lib_rs';
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -48,7 +48,8 @@ export function activate(context: vscode.ExtensionContext) {
             },
             "age": 1
         }
-		webviewPanel.webview.html = '<h1>RustJson</h1>';
+		//webviewPanel.webview.html = '<h1>RustJson</h1>';
+		webviewPanel.webview.html = '<h1>' + parse_json_default(JSON.stringify(json)) +'</h1>';
 
 		const quickPick = vscode.window.createQuickPick();
 		quickPick.items = [

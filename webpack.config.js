@@ -3,6 +3,10 @@
 'use strict';
 
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// 赋予 webpack 处理 wasm 才能的插件
+const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin"); 
+const webpack = require('webpack');
 
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
@@ -37,12 +41,35 @@ const extensionConfig = {
             loader: 'ts-loader'
           }
         ]
-      }
+      },
+      // {
+      //   test: /\.wasm$/,
+      //   use: [
+      //     {
+      //       loader: 'wasm-loader'
+      //     }
+      //   ]
+      // }
     ]
   },
+  plugins: [
+    new HtmlWebpackPlugin(),
+    new WasmPackPlugin({
+        crateDirectory: path.resolve(__dirname, ".")
+    }),
+    // Have this example work in Edge which doesn't ship `TextEncoder` or
+    // `TextDecoder` at this time. 处理浏览器兼容问题
+    // new webpack.ProvidePlugin({
+    //   TextDecoder: ['text-encoding', 'TextDecoder'],
+    //   TextEncoder: ['text-encoding', 'TextEncoder']
+    // })
+],
   devtool: 'nosources-source-map',
   infrastructureLogging: {
     level: "log", // enables logging required for problem matchers
   },
+  experiments: {
+    asyncWebAssembly: true
+  }
 };
 module.exports = [ extensionConfig ];
