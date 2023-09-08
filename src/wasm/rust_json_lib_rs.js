@@ -1,14 +1,16 @@
+let imports = {};
 let wasm;
+const { TextEncoder, TextDecoder } = require(`util`);
 
 /**
 * @param {number} a
 * @param {number} b
 * @returns {number}
 */
-export function sum(a, b) {
+module.exports.sum = function(a, b) {
     const ret = wasm.sum(a, b);
     return ret;
-}
+};
 
 let WASM_VECTOR_LEN = 0;
 
@@ -21,7 +23,7 @@ function getUint8Memory0() {
     return cachedUint8Memory0;
 }
 
-const cachedTextEncoder = (typeof TextEncoder !== 'undefined' ? new TextEncoder('utf-8') : { encode: () => { throw Error('TextEncoder not available') } } );
+let cachedTextEncoder = new TextEncoder('utf-8');
 
 const encodeString = (typeof cachedTextEncoder.encodeInto === 'function'
     ? function (arg, view) {
@@ -83,9 +85,9 @@ function getInt32Memory0() {
     return cachedInt32Memory0;
 }
 
-const cachedTextDecoder = (typeof TextDecoder !== 'undefined' ? new TextDecoder('utf-8', { ignoreBOM: true, fatal: true }) : { decode: () => { throw Error('TextDecoder not available') } } );
+let cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
 
-if (typeof TextDecoder !== 'undefined') { cachedTextDecoder.decode(); };
+cachedTextDecoder.decode();
 
 function getStringFromWasm0(ptr, len) {
     ptr = ptr >>> 0;
@@ -95,7 +97,7 @@ function getStringFromWasm0(ptr, len) {
 * @param {string} json
 * @returns {string}
 */
-export function parse_json_default(json) {
+module.exports.parse_json_default = function(json) {
     let deferred2_0;
     let deferred2_1;
     try {
@@ -112,94 +114,13 @@ export function parse_json_default(json) {
         wasm.__wbindgen_add_to_stack_pointer(16);
         wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
     }
-}
+};
 
-async function __wbg_load(module, imports) {
-    if (typeof Response === 'function' && module instanceof Response) {
-        if (typeof WebAssembly.instantiateStreaming === 'function') {
-            try {
-                return await WebAssembly.instantiateStreaming(module, imports);
+const path = require('path').join(__dirname, 'rust_json_lib_rs_bg.wasm');
+const bytes = require('fs').readFileSync(path);
 
-            } catch (e) {
-                if (module.headers.get('Content-Type') != 'application/wasm') {
-                    console.warn("`WebAssembly.instantiateStreaming` failed because your server does not serve wasm with `application/wasm` MIME type. Falling back to `WebAssembly.instantiate` which is slower. Original error:\n", e);
+const wasmModule = new WebAssembly.Module(bytes);
+const wasmInstance = new WebAssembly.Instance(wasmModule, imports);
+wasm = wasmInstance.exports;
+module.exports.__wasm = wasm;
 
-                } else {
-                    throw e;
-                }
-            }
-        }
-
-        const bytes = await module.arrayBuffer();
-        return await WebAssembly.instantiate(bytes, imports);
-
-    } else {
-        const instance = await WebAssembly.instantiate(module, imports);
-
-        if (instance instanceof WebAssembly.Instance) {
-            return { instance, module };
-
-        } else {
-            return instance;
-        }
-    }
-}
-
-function __wbg_get_imports() {
-    const imports = {};
-    imports.wbg = {};
-
-    return imports;
-}
-
-function __wbg_init_memory(imports, maybe_memory) {
-
-}
-
-function __wbg_finalize_init(instance, module) {
-    wasm = instance.exports;
-    __wbg_init.__wbindgen_wasm_module = module;
-    cachedInt32Memory0 = null;
-    cachedUint8Memory0 = null;
-
-
-    return wasm;
-}
-
-function initSync(module) {
-    if (wasm !== undefined) return wasm;
-
-    const imports = __wbg_get_imports();
-
-    __wbg_init_memory(imports);
-
-    if (!(module instanceof WebAssembly.Module)) {
-        module = new WebAssembly.Module(module);
-    }
-
-    const instance = new WebAssembly.Instance(module, imports);
-
-    return __wbg_finalize_init(instance, module);
-}
-
-async function __wbg_init(input) {
-    if (wasm !== undefined) return wasm;
-
-    if (typeof input === 'undefined') {
-        input = new URL('rust_json_lib_rs_bg.wasm', import.meta.url);
-    }
-    const imports = __wbg_get_imports();
-
-    if (typeof input === 'string' || (typeof Request === 'function' && input instanceof Request) || (typeof URL === 'function' && input instanceof URL)) {
-        input = fetch(input);
-    }
-
-    __wbg_init_memory(imports);
-
-    const { instance, module } = await __wbg_load(await input, imports);
-
-    return __wbg_finalize_init(instance, module);
-}
-
-export { initSync }
-export default __wbg_init;

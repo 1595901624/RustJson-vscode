@@ -3,9 +3,9 @@
 'use strict';
 
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 赋予 webpack 处理 wasm 才能的插件
-const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin"); 
+// const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin"); 
 const webpack = require('webpack');
 
 //@ts-check
@@ -35,7 +35,7 @@ const extensionConfig = {
     rules: [
       {
         test: /\.ts$/,
-        exclude: [/node_modules/, path.resolve('src/wasm/rust_json_lib_rs_bg.wasm')],
+        exclude: [/node_modules/],
         use: [
           {
             loader: 'ts-loader'
@@ -46,24 +46,34 @@ const extensionConfig = {
       //   test: /\.wasm$/,
       //   use: [
       //     {
-      //       loader: 'wasm-loader'
+      //       loader: 'file-loader'
       //     }
       //   ]
       // }
+      // 输出目录下的wasm文件到根目录
+       {
+        test: /\.wasm$/,
+        type: "javascript/auto",
+        loader: "wasm-loader",
+        options: {
+          name: "[name].[ext]",
+          outputPath: "./",
+        },
+      },
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin(),
-    new WasmPackPlugin({
-        crateDirectory: path.resolve(__dirname, ".")
-    }),
-    // Have this example work in Edge which doesn't ship `TextEncoder` or
-    // `TextDecoder` at this time. 处理浏览器兼容问题
-    // new webpack.ProvidePlugin({
-    //   TextDecoder: ['text-encoding', 'TextDecoder'],
-    //   TextEncoder: ['text-encoding', 'TextEncoder']
-    // })
-],
+//   plugins: [
+//     new HtmlWebpackPlugin(),
+//     new WasmPackPlugin({
+//         crateDirectory: path.resolve(__dirname, ".")
+//     }),
+//     // Have this example work in Edge which doesn't ship `TextEncoder` or
+//     // `TextDecoder` at this time. 处理浏览器兼容问题
+//     // new webpack.ProvidePlugin({
+//     //   TextDecoder: ['text-encoding', 'TextDecoder'],
+//     //   TextEncoder: ['text-encoding', 'TextEncoder']
+//     // })
+// ],
   devtool: 'nosources-source-map',
   infrastructureLogging: {
     level: "log", // enables logging required for problem matchers
