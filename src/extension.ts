@@ -1,7 +1,9 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import * as wasm_module from './wasm/rust_json_lib_rs';
+// import * as wasm_module from './wasm/rust_json_lib_rs';
+// import * as wasm from './wasm/rust_json_lib_rs_bg.wasm';
+import * as wasm from '../pkg';
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -38,20 +40,20 @@ export function activate(context: vscode.ExtensionContext) {
 		let webviewPanel = vscode.window.createWebviewPanel('RustJson', 'RustJson', vscode.ViewColumn.One, {
 			enableScripts: true
 		});
-		 // 在panel中加载并显示自定义窗口的HTML文件
+		// 在panel中加载并显示自定义窗口的HTML文件
 		// webviewPanel.webview.html = await getWebviewContent();
 		let json = {
-            "name": "zhangsan",
-            "sex": false,
-            "city": {
-                "country": "beijing"
-            },
-            "age": 1
-        }
+			"name": "zhangsan",
+			"sex": false,
+			"city": {
+				"country": "beijing"
+			},
+			"age": 1
+		}
 		//webviewPanel.webview.html = '<h1>RustJson</h1>';
 		// 加载本地html
 		// webviewPanel.webview.html = fs.readFileSync(path.join(context.extensionPath, 'src', 'customView', 'customView.html'), 'utf-8');
-		webviewPanel.webview.html = '<h1>' + wasm_module.parse_json_default(JSON.stringify(json)) +'</h1>';
+		webviewPanel.webview.html = '<h1>' + wasm.parse_json_default(JSON.stringify(json)) + '</h1>';
 
 		const quickPick = vscode.window.createQuickPick();
 		quickPick.items = [

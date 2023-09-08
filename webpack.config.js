@@ -3,10 +3,13 @@
 'use strict';
 
 const path = require('path');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
-// 赋予 webpack 处理 wasm 才能的插件
-// const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin"); 
 const webpack = require('webpack');
+const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+// const { fileURLToPath } = require("url");
+
+// const filename = fileURLToPath(__dirname);
+// const dirname = path.dirname(filename);
 
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
@@ -14,7 +17,7 @@ const webpack = require('webpack');
 /** @type WebpackConfig */
 const extensionConfig = {
   target: 'node', // VS Code extensions run in a Node.js-context 📖 -> https://webpack.js.org/configuration/node/
-	mode: 'none', // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
+  mode: 'none', // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
 
   entry: './src/extension.ts', // the entry point of this extension, 📖 -> https://webpack.js.org/configuration/entry-context/
   output: {
@@ -29,7 +32,7 @@ const extensionConfig = {
   },
   resolve: {
     // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js', '.wasm']
   },
   module: {
     rules: [
@@ -44,42 +47,36 @@ const extensionConfig = {
       },
       // {
       //   test: /\.wasm$/,
-      //   use: [
-      //     {
-      //       loader: 'file-loader'
-      //     }
-      //   ]
+      //   type: "webassembly/experimental"
       // }
       // 输出目录下的wasm文件到根目录
-       {
-        test: /\.wasm$/,
-        type: "javascript/auto",
-        loader: "wasm-loader",
-        options: {
-          name: "[name].[ext]",
-          outputPath: "./",
-        },
-      },
+      // {
+      //   test: /\.wasm$/i,
+      //   use: [
+      //     {
+      //       loader: 'wasm-loader',
+      //     }
+      //   ],
+      // },
     ]
   },
-//   plugins: [
-//     new HtmlWebpackPlugin(),
-//     new WasmPackPlugin({
-//         crateDirectory: path.resolve(__dirname, ".")
-//     }),
-//     // Have this example work in Edge which doesn't ship `TextEncoder` or
-//     // `TextDecoder` at this time. 处理浏览器兼容问题
-//     // new webpack.ProvidePlugin({
-//     //   TextDecoder: ['text-encoding', 'TextDecoder'],
-//     //   TextEncoder: ['text-encoding', 'TextEncoder']
-//     // })
-// ],
+  plugins: [
+    // new WasmPackPlugin({
+    //   crateDirectory: path.resolve(__dirname, '.')
+    // })
+    new CopyPlugin({
+      patterns: [
+        { from: "pkg", to: "." }
+      ]
+    })
+  ],
   devtool: 'nosources-source-map',
   infrastructureLogging: {
     level: "log", // enables logging required for problem matchers
   },
   experiments: {
-    asyncWebAssembly: true
+    asyncWebAssembly: true,
+    syncWebAssembly: true,
   }
 };
-module.exports = [ extensionConfig ];
+module.exports = [extensionConfig];
