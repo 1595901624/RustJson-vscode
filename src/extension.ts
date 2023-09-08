@@ -5,6 +5,7 @@ import * as vscode from 'vscode';
 // import * as wasm from './wasm/rust_json_lib_rs_bg.wasm';
 import * as wasm from '../pkg';
 import path = require('path');
+import { readFileSync } from 'fs';
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -28,15 +29,15 @@ export function activate(context: vscode.ExtensionContext) {
 			return;
 		}
 
-		const selection = editor.selection;
-		const selectedCode = editor.document.getText(selection);
+		// const selection = editor.selection;
+		// const selectedCode = editor.document.getText(selection);
 
 		// Process selected code
 		// if (!isJsonString(selectedCode)) {
 		// 	return;
 		// }
 		// console.log(selectedCode);
-		vscode.window.showInformationMessage(selectedCode);
+		// vscode.window.showInformationMessage(selectedCode);
 
 		let webviewPanel = vscode.window.createWebviewPanel('RustJson', 'RustJson', vscode.ViewColumn.One, {
 			enableScripts: true
@@ -55,7 +56,9 @@ export function activate(context: vscode.ExtensionContext) {
 		// 加载本地html
 		// webviewPanel.webview.html = fs.readFileSync(path.join(context.extensionPath, 'src', 'customView', 'customView.html'), 'utf-8');
 		// webviewPanel.webview.html = '<h1>' + wasm.parse_json_default(JSON.stringify(json)) + '</h1>';
-		webviewPanel.webview.asWebviewUri(vscode.Uri.file(path.join(context.extensionPath, 'src', 'ui.html')));
+		let htmlPath = vscode.Uri.file(path.join(context.extensionPath, 'src', 'ui.html'));
+		let html = readFileSync(htmlPath.fsPath);
+		webviewPanel.webview.html = html.toString();
 
 		// const quickPick = vscode.window.createQuickPick();
 		// quickPick.items = [
