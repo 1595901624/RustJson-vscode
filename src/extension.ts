@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 // import * as wasm_module from './wasm/rust_json_lib_rs';
 // import * as wasm from './wasm/rust_json_lib_rs_bg.wasm';
 import * as wasm from '../pkg';
+import path = require('path');
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -53,18 +54,19 @@ export function activate(context: vscode.ExtensionContext) {
 		//webviewPanel.webview.html = '<h1>RustJson</h1>';
 		// 加载本地html
 		// webviewPanel.webview.html = fs.readFileSync(path.join(context.extensionPath, 'src', 'customView', 'customView.html'), 'utf-8');
-		webviewPanel.webview.html = '<h1>' + wasm.parse_json_default(JSON.stringify(json)) + '</h1>';
+		// webviewPanel.webview.html = '<h1>' + wasm.parse_json_default(JSON.stringify(json)) + '</h1>';
+		webviewPanel.webview.asWebviewUri(vscode.Uri.file(path.join(context.extensionPath, 'src', 'ui.html')));
 
-		const quickPick = vscode.window.createQuickPick();
-		quickPick.items = [
-			{ label: '1', description: '1' },
-			{ label: '2', description: '2' },
-			{ label: '3', description: '3' }
-		]
-		quickPick.onDidChangeSelection((selection) => {
-			vscode.window.showInformationMessage(selection[0].description ?? "");
-		});
-		quickPick.show();
+		// const quickPick = vscode.window.createQuickPick();
+		// quickPick.items = [
+		// 	{ label: '1', description: '1' },
+		// 	{ label: '2', description: '2' },
+		// 	{ label: '3', description: '3' }
+		// ]
+		// quickPick.onDidChangeSelection((selection) => {
+		// 	vscode.window.showInformationMessage(selection[0].description ?? "");
+		// });
+		// quickPick.show();
 
 
 		// 输入
