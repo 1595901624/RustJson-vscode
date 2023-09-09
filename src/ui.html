@@ -81,6 +81,9 @@
         }
     </style>
     <script>
+        const vscode = acquireVsCodeApi();
+
+        // 初始化编辑器
         window.onload = function () {
             var editor = ace.edit("editor");
             editor.setTheme("ace/theme/monokai");
@@ -105,6 +108,18 @@
                 readOnly: false
             });
         };
+
+        // 生成代码
+        function onOkButonClick() {
+            console.log("click!");
+            // var editor = ace.edit("editor");
+
+            vscode.postMessage({
+                command: 'ok',
+                text: "sdsd"
+            });
+            // alert("click2!");
+        } 
     </script>
 </head>
 
@@ -120,8 +135,8 @@
     <div class="checkbox-container">
         <input type="checkbox" class="checkbox-input" id="checkbox1">
         <label for="checkbox1" class="checkbox-label">Add Option</label>
-      </div>
-    <button class="ok">OK</button>
+    </div>
+    <button class="ok" onclick="onOkButonClick">OK</button>
 </body>
 
 </html>
