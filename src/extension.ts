@@ -10,6 +10,10 @@ import { readFileSync } from 'fs';
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+	// let webviewPanel: vscode.WebviewPanel | undefined = undefined;
+
+	// let formatJsonResult = "";
+
 	context.subscriptions.push(
 		// The command has been defined in the package.json file
 		// Now provide the implementation of the command with registerCommand
@@ -23,10 +27,10 @@ export function activate(context: vscode.ExtensionContext) {
 
 			// https://code.visualstudio.com/api/extension-guides/webview
 
-			const editor = vscode.window.activeTextEditor;
-			if (!editor) {
-				return;
-			}
+			// const editor = vscode.window.activeTextEditor;
+			// if (!editor) {
+			// 	return;
+			// }
 
 			// const selection = editor.selection;
 			// const selectedCode = editor.document.getText(selection);
@@ -63,6 +67,7 @@ export function activate(context: vscode.ExtensionContext) {
 							if (isJsonString(message.text)) {
 								let result = wasm.parse_json_default(message.text);
 								console.log(result);
+								webviewPanel.webview.postMessage({ command: 'json', text: result });
 							} else {
 								vscode.window.showInformationMessage('Error: Invalid JSON format.');
 							}
@@ -83,8 +88,19 @@ export function activate(context: vscode.ExtensionContext) {
 			}
 		})
 	);
-	//context.subscriptions.push(disposable);
+
+	// Send a message to the webview
+	// context.subscriptions.push(
+	// 	vscode.commands.registerCommand('catCoding.doRefactor', () => {
+	// 		if (!webviewPanel) {
+	// 			return;
+	// 		}
+
+	// 		webviewPanel.webview.postMessage({ command: 'refactor' });
+	// 	})
+	// );
 }
+
 
 // This method is called when your extension is deactivated
 export function deactivate() { }
