@@ -20,8 +20,6 @@ export function activate(context: vscode.ExtensionContext) {
 			// This line of code will only be executed once when your extension is activated
 			// console.log('Congratulations, your extension "rustjson" is now active!');
 			// The code you place here will be executed every time your command is executed
-			// Display a message box to the user
-			// vscode.window.showInformationMessage('Hello World from RustJson!');
 
 			// https://code.visualstudio.com/api/extension-guides/webview
 
@@ -53,10 +51,6 @@ export function activate(context: vscode.ExtensionContext) {
 				},
 				"age": 1
 			}
-			//webviewPanel.webview.html = '<h1>RustJson</h1>';
-			// 加载本地html
-			// webviewPanel.webview.html = fs.readFileSync(path.join(context.extensionPath, 'src', 'customView', 'customView.html'), 'utf-8');
-			// webviewPanel.webview.html = '<h1>' + wasm.parse_json_default(JSON.stringify(json)) + '</h1>';
 			let htmlPath = vscode.Uri.file(path.join(context.extensionPath, 'src', 'ui.html'));
 			let html = readFileSync(htmlPath.fsPath);
 			webviewPanel.webview.html = html.toString();
@@ -66,13 +60,27 @@ export function activate(context: vscode.ExtensionContext) {
 					switch (message.command) {
 						case 'ok':
 							console.log("ok button clicked: " + message.text);
-							vscode.window.showInformationMessage("ok button clicked: " + message.text);
+							if (isJsonString(message.text)) {
+								let result = wasm.parse_json_default(message.text);
+								console.log(result);
+							} else {
+								vscode.window.showInformationMessage('Error: Invalid JSON format.');
+							}
 							return;
 					}
 				},
 				undefined,
 				context.subscriptions
 			);
+
+			function isJsonString(str: string) {
+				try {
+					JSON.parse(str);
+				} catch (e) {
+					return false;
+				}
+				return true;
+			}
 		})
 	);
 	//context.subscriptions.push(disposable);

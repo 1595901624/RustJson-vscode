@@ -1,0 +1,13 @@
+{
+  "name": "rust_json_lib_rs",
+  "description": "A library for parsing JSON in Rust",
+  "version": "0.1.0",
+  "license": "MIT",
+  "files": [
+    "rust_json_lib_rs_bg.wasm",
+    "rust_json_lib_rs.js",
+    "rust_json_lib_rs.d.ts"
+  ],
+  "main": "rust_json_lib_rs.js",
+  "types": "rust_json_lib_rs.d.ts"
+}

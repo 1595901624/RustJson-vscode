@@ -107,18 +107,16 @@
                 },
                 readOnly: false
             });
+
         };
 
         // 生成代码
         function onOkButonClick() {
-            console.log("click!");
-            // var editor = ace.edit("editor");
-
+            var editor = ace.edit("editor");
             vscode.postMessage({
                 command: 'ok',
-                text: "sdsd"
+                text: editor.getValue()
             });
-            // alert("click2!");
         } 
     </script>
 </head>
@@ -136,7 +134,7 @@
         <input type="checkbox" class="checkbox-input" id="checkbox1">
         <label for="checkbox1" class="checkbox-label">Add Option</label>
     </div>
-    <button class="ok" onclick="onOkButonClick">OK</button>
+    <button class="ok" onclick="onOkButonClick()">OK</button>
 </body>
 
 </html>
