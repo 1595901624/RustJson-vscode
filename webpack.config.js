@@ -66,7 +66,8 @@ const extensionConfig = {
     // })
     new CopyPlugin({
       patterns: [
-        { from: "pkg", to: "." }
+        { from: "pkg", to: "." },
+        { from: "src/ui.html", to: "src/ui.html" }
       ]
     })
   ],
