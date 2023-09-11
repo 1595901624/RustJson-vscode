@@ -55,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
 				},
 				"age": 1
 			}
-			let htmlPath = vscode.Uri.file(path.join(context.extensionPath, 'src', 'ui.html'));
+			let htmlPath = vscode.Uri.file(path.join(context.extensionPath, 'static', 'ui.html'));
 			console.log(htmlPath.path);
 			let html = readFileSync(htmlPath.path, "utf-8");
 			webviewPanel.webview.html = html.toString();

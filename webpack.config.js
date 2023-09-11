@@ -24,7 +24,7 @@ const extensionConfig = {
     // the bundle is stored in the 'dist' folder (check package.json), 📖 -> https://webpack.js.org/configuration/output/
     path: path.resolve(__dirname, 'dist'),
     filename: 'extension.js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
   },
   externals: {
     vscode: 'commonjs vscode' // the vscode-module is created on-the-fly and must be excluded. Add other modules that cannot be webpack'ed, 📖 -> https://webpack.js.org/configuration/externals/
@@ -32,7 +32,7 @@ const extensionConfig = {
   },
   resolve: {
     // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader
-    extensions: ['.ts', '.js', '.wasm']
+    extensions: ['.ts', '.js', '.wasm', '.html']
   },
   module: {
     rules: [
@@ -67,7 +67,7 @@ const extensionConfig = {
     new CopyPlugin({
       patterns: [
         { from: "pkg", to: "." },
-        { from: "src/ui.html", to: "src/ui.html" }
+        { from: "static", to: "./static" }
       ]
     })
   ],
