@@ -1,71 +1,66 @@
-# rustjson README
+<div align="center">
+    <img src="demo/rustjson.png" width="20%" alt="rust json"/>
+    <h1>RustJson-VSCode</h1>
+    <p><b>A Json to Rust Struct VSCode Extension.</b></p>
+    <img src="https://img.shields.io/badge/status-developing-green.svg?style=flat" />
+    <a target="_blank" href="https://github.com/1595901624/RustJson/releases">
+      <img src="https://img.shields.io/badge/latest%20version-v0.0.1.Canary-blue.svg?style=flat" />
+    </a>
+    <img src="https://img.shields.io/badge/license-AGPLv3-orange.svg?style=flat" />
+    <!-- <a target="_blank" href="https://plugins.jetbrains.com/plugin/22393-rustjson">
+        <img src="https://img.shields.io/badge/JetbrainMarketPlace-v0.0.6.Beta-red.svg?style=flat" />
+    </a> -->
+   <p>[English]<a href="README_CN.md"><span>[简体中文]</span></a></p>
+</div>
 
-This is the README for your extension "rustjson". After writing up a brief description, we recommend including the following sections.
+**NOTE: The current version is a test version, there may be some bugs, welcome to put forward valuable
+suggestions.**
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Convert Json to Rust Struct.
 
-For example if there is an image subfolder under your extension project workspace:
+* Support `debug` derive
+* Support `serde` derive
+* Support `serde` rename
 
-\!\[feature X\]\(images/feature-x.png\)
+## Screenshots
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+<div>
+   <img src="demo/screenshot1.png" height="50%" width="40%" >
+   <img src="demo/screenshot2.png" height="50%" width="40%">
+   <img src="demo/screenshot3.png" height="50%" width="40%">
+</div>
 
-## Requirements
+## Usage
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. Open VSCode.
+2. Settings -> Plugins -> Marketplace -> Search `RustJson` -> Install
+3. Open any file
+4. Press `Alt + W`  to open the window or right click to open the context menu and select `Generate Rust Struct`
+5. Input Json text and press `OK`
 
-## Extension Settings
+## Give me a Cup of Coffee
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+And you can also give me a cup of coffee by scanning the QR code below.
 
-For example:
+| Paypal                                                  | Wechat                                     | Alipay/AlipayHK                            |
+|---------------------------------------------------------|--------------------------------------------|--------------------------------------------|
+| [**`Paypal`**](https://www.paypal.com/paypalme/haoyu94) | <img src="demo/wechat.jpeg" height="180" /> | <img src="demo/alipay.jpeg" height="180" /> |
 
-This extension contributes the following settings:
+## For Developer
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+1. Install `VS Code`
+2. Clone the project
+3. Build the project
 
-## Known Issues
+## Feedback
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+If you have any questions, please submit an issue. And you can also follow my WeChat Official Account by scanning the QR
+code below.
 
-## Release Notes
+<img src="demo/qrcode.jpg" width="30%">
 
-Users appreciate release notes as you update your extension.
+## License
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+AGPLv3
