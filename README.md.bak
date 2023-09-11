@@ -1,4 +1,5 @@
 <div align="center">
+    <img src="demo/rustjson.png" width="20%" alt="rust json"/>
     <h1>RustJson-VSCode</h1>
     <p><b>A Json to Rust Struct VSCode Extension.</b></p>
     <img src="https://img.shields.io/badge/status-developing-green.svg?style=flat" />
@@ -6,7 +7,10 @@
       <img src="https://img.shields.io/badge/latest%20version-v0.0.1.Canary-blue.svg?style=flat" />
     </a>
     <img src="https://img.shields.io/badge/license-AGPLv3-orange.svg?style=flat" />
-    <p>[English]<a href="https://github.com/1595901624/RustJson-vscode/blob/main/README_CN.md"><span>[简体中文]</span></a></p>
+    <!-- <a target="_blank" href="https://plugins.jetbrains.com/plugin/22393-rustjson">
+        <img src="https://img.shields.io/badge/JetbrainMarketPlace-v0.0.6.Beta-red.svg?style=flat" />
+    </a> -->
+   <p>[English]<a href="https://github.com/1595901624/RustJson-vscode/blob/main/README_CN.md"><span>[简体中文]</span></a></p>
 </div>
 
 **NOTE: The current version is a test version, there may be some bugs, welcome to put forward valuable
@@ -22,6 +26,11 @@ Convert Json to Rust Struct.
 
 ## Screenshots
 
+<!-- <div>
+   <img src="demo/screenshot1.png" height="50%" width="40%" >
+   <img src="demo/screenshot2.png" height="50%" width="40%">
+   <img src="demo/screenshot3.png" height="50%" width="40%">
+</div> -->
 
 ## Usage
 
@@ -39,7 +48,6 @@ And you can also give me a cup of coffee by scanning the QR code below.
 |---------------------------------------------------------|--------------------------------------------|--------------------------------------------|
 | [**`Paypal`**](https://www.paypal.com/paypalme/haoyu94) | <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/wechat.jpeg" height="180" /> | <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/alipay.jpeg" height="180" /> |
 
-
 ## For Developer
 
 1. Install `VS Code`
@@ -51,7 +59,7 @@ And you can also give me a cup of coffee by scanning the QR code below.
 If you have any questions, please submit an issue. And you can also follow my WeChat Official Account by scanning the QR
 code below.
 
-<img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/qrcode.jpeg" width="30%">
+<img src="demo/qrcode.jpg" width="30%">
 
 ## License
 
