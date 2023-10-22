@@ -9,7 +9,7 @@
     <p>[English]<a href="https://github.com/1595901624/RustJson-vscode/blob/main/README_CN.md"><span>[简体中文]</span></a></p>
 </div>
 
-**NOTE: The current version is a test version, there may be some bugs, welcome to put forward valuable
+**NOTE: The current version is a canary version, there may be some bugs, welcome to put forward valuable
 suggestions.**
 
 ## Features
@@ -23,13 +23,13 @@ Convert Json to Rust Struct.
 ## Screenshots
 
 
+
 ## Usage
 
 1. Open VSCode.
-2. Settings -> Plugins -> Marketplace -> Search `RustJson` -> Install
-3. Open any file
-4. Press `Alt + W`  to open the window or right click to open the context menu and select `Generate Rust Struct`
-5. Input Json text and press `OK`
+2. Extensions -> Search `RustJson` -> Install
+3. Open `Command Palette`, type `RustJson` and press Enter
+4. Input Json text and press `Generate`
 
 ## Give me a Cup of Coffee
 

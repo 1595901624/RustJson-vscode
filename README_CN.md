@@ -1,71 +1,52 @@
-# rustjson README
+<div align="center">
+    <h1>RustJson-VSCode</h1>
+    <p><b>A Json to Rust Struct VSCode Extension.</b></p>
+    <img src="https://img.shields.io/badge/status-developing-green.svg?style=flat" />
+    <a target="_blank" href="https://github.com/1595901624/RustJson/releases">
+      <img src="https://img.shields.io/badge/latest%20version-v0.0.1.Canary-blue.svg?style=flat" />
+    </a>
+    <img src="https://img.shields.io/badge/license-AGPLv3-orange.svg?style=flat" />
+    <p>[English]<a href="https://github.com/1595901624/RustJson-vscode/blob/main/README_CN.md"><span>[简体中文]</span></a></p>
+</div>
 
-This is the README for your extension "rustjson". After writing up a brief description, we recommend including the following sections.
+**注：当前版本处于测试阶段，仍存在一些问题，如果存在bug，欢迎提出问题！**
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+转换 json 为 Rust 结构体.
 
-For example if there is an image subfolder under your extension project workspace:
+## Screenshots
 
-\!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
-## Requirements
+## Usage
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+1. 打开 VSCode.
+2. 扩展窗口搜索 `RustJson` -> 安装
+3. 打开 `命令面板`, 输入 `RustJson` 并按下回车键
+4. 输入 Json 然后按 `Generate`
 
-## Extension Settings
+## 捐赠
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+您可以扫描二维码给我捐赠
 
-For example:
+| Paypal                                                  | Wechat                                     | Alipay/AlipayHK                            |
+|---------------------------------------------------------|--------------------------------------------|--------------------------------------------|
+| [**`Paypal`**](https://www.paypal.com/paypalme/haoyu94) | <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/wechat.jpeg" height="180" /> | <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/alipay.jpeg" height="180" /> |
 
-This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## For Developer
 
-## Known Issues
+1. Install `VS Code`
+2. Clone the project
+3. Build the project
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## Feedback
 
-## Release Notes
+如果您有任何疑问，请提交问题。您也可以扫描二维码关注我的微信公众号。
 
-Users appreciate release notes as you update your extension.
+<img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/qrcode.jpeg" width="30%">
 
-### 1.0.0
+## License
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+AGPLv3
