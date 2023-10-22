@@ -1,8 +1,9 @@
 <html>
 
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script>
+    <script src="{{aceSrc}}"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.5.0/ace.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script> -->
     <style>
         .editor {
             width: 100%;
@@ -83,26 +84,29 @@
     </style>
     <script>
         const vscode = acquireVsCodeApi();
-
+        const INNPUT_DATA = "vscode.input.data";
+        const RESULT_DATA = "vscode.result.data";
+        
         // 初始化编辑器
         window.onload = function () {
-            // initialize the editor
-            let editor = ace.edit("editor");
-            editor.setTheme("ace/theme/monokai");
-            editor.getSession().setMode("ace/mode/json");
-            editor.setAutoScrollEditorIntoView(true);
-            editor.setOption("maxLines", 20);
-            editor.setOption("minLines", 20);
+            // initialize the input editor
+            let inputEditor = ace.edit("editor");
+            inputEditor.setTheme("ace/theme/monokai");
+            inputEditor.getSession().setMode("ace/mode/json");
+            inputEditor.setAutoScrollEditorIntoView(true);
+            inputEditor.setOption("maxLines", 20);
+            inputEditor.setOption("minLines", 20);
+            inputEditor.setValue(getInputData())
 
-            editor.commands.addCommand({
+            inputEditor.commands.addCommand({
                 name: "formatJSON",
                 bindKey: { mac: "Command-Shift-F", win: "Ctrl-Shift-F" },
-                exec: function (editor) {
+                exec: function (inputEditor) {
                     try {
-                        var jsonString = editor.getValue();
+                        var jsonString = inputEditor.getValue();
                         var jsonObject = JSON.parse(jsonString);
                         var formattedJsonString = JSON.stringify(jsonObject, null, 2);
-                        editor.setValue(formattedJsonString);
+                        inputEditor.setValue(formattedJsonString);
                     } catch (error) {
                         console.log("Invalid JSON format.");
                     }
@@ -110,31 +114,27 @@
                 readOnly: false
             });
 
+            inputEditor.getSession().on('change', function (e) {
+                // console.log(e)
+                saveInputData(inputEditor.getValue());
+            })
+
+            // result editor
             let resultEditor = ace.edit("result-editor");
             resultEditor.setTheme("ace/theme/monokai");
             resultEditor.getSession().setMode("ace/mode/rust");
             resultEditor.setAutoScrollEditorIntoView(true);
             resultEditor.setOption("maxLines", 20);
             resultEditor.setOption("minLines", 20);
+            resultEditor.setValue(getResultData())
 
-            // editor.commands.addCommand({
-            //     name: "formatRust",
-            //     bindKey: { mac: "Command-Shift-F", win: "Ctrl-Shift-F" },
-            //     exec: function (editor) {
-            //         try {
-            //             var jsonString = editor.getValue();
-            //             var jsonObject = JSON.parse(jsonString);
-            //             var formattedJsonString = JSON.stringify(jsonObject, null, 2);
-            //             editor.setValue(formattedJsonString);
-            //         } catch (error) {
-            //             console.log("Invalid JSON format.");
-            //         }
-            //     },
-            //     readOnly: false
-            // });
+            resultEditor.getSession().on('change', function (e) {
+                // console.log(e)
+                saveResultData(resultEditor.getValue());
+            })
         };
 
-        // 生成代码
+        // generate
         function onOkButonClick() {
             var editor = ace.edit("editor");
             vscode.postMessage({
@@ -154,6 +154,46 @@
                     break;
             }
         });
+
+        /**
+         * saveInputData
+         * @param {string} data 
+         * */
+        function saveInputData(data) {
+            window.localStorage.setItem(INNPUT_DATA, data)
+        }
+
+        /**
+         * getInputData
+         * @return {string}
+         * */
+        function getInputData() {
+            let data = window.localStorage.getItem(INNPUT_DATA);
+            if (data != null) {
+                return data
+            }
+            return ""
+        }
+
+        /**
+         * saveResultData
+         * @param {string} data 
+         * */
+         function saveResultData(data) {
+            window.localStorage.setItem(RESULT_DATA, data)
+        }
+
+        /**
+         * getResultData
+         * @return {string}
+         * */
+        function getResultData() {
+            let data = window.localStorage.getItem(RESULT_DATA);
+            if (data != null) {
+                return data
+            }
+            return ""
+        }
     </script>
 </head>
 

@@ -20,33 +20,9 @@ export function activate(context: vscode.ExtensionContext) {
 		// The commandId parameter must match the command field in package.json
 		vscode.commands.registerCommand('rustjson.Rust2Json', async () => {
 
-			// Use the console to output diagnostic information (console.log) and errors (console.error)
-			// This line of code will only be executed once when your extension is activated
-			// console.log('Congratulations, your extension "rustjson" is now active!');
-			// The code you place here will be executed every time your command is executed
-
-			// https://code.visualstudio.com/api/extension-guides/webview
-
-			// const editor = vscode.window.activeTextEditor;
-			// if (!editor) {
-			// 	return;
-			// }
-
-			// const selection = editor.selection;
-			// const selectedCode = editor.document.getText(selection);
-
-			// Process selected code
-			// if (!isJsonString(selectedCode)) {
-			// 	return;
-			// }
-			// console.log(selectedCode);
-			// vscode.window.showInformationMessage(selectedCode);
-
 			let webviewPanel = vscode.window.createWebviewPanel('RustJson', 'RustJson', vscode.ViewColumn.One, {
-				enableScripts: true
+				enableScripts: true,
 			});
-			// 在panel中加载并显示自定义窗口的HTML文件
-			// webviewPanel.webview.html = await getWebviewContent();
 			let json = {
 				"name": "zhangsan",
 				"sex": false,
@@ -55,10 +31,17 @@ export function activate(context: vscode.ExtensionContext) {
 				},
 				"age": 1
 			}
-			let htmlPath = vscode.Uri.file(path.join(context.extensionPath, 'static', 'ui.html'));
-			console.log(htmlPath.path);
-			let html = readFileSync(htmlPath.path, "utf-8");
-			webviewPanel.webview.html = html.toString();
+			// let htmlPath = vscode.Uri.file(path.join(context.extensionPath, 'static', 'ui.html'));
+			let htmlUri = vscode.Uri.joinPath(context.extensionUri, "static", 'ui.html');
+			console.log(htmlUri.fsPath);
+
+			let aceUri = vscode.Uri.joinPath(context.extensionUri, "static", "ace", 'ace.js');
+			let aceSrc = webviewPanel.webview.asWebviewUri(aceUri);
+			console.log(aceSrc.toString());
+
+			let html = readFileSync(htmlUri.fsPath, "utf-8");
+			webviewPanel.webview.html = html.toString().replace("{{aceSrc}}", aceSrc.toString());
+			// console.log(htmlUri);
 
 			webviewPanel.webview.onDidReceiveMessage(
 				message => {
