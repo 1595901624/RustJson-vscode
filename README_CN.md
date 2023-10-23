@@ -11,15 +11,15 @@
 
 **注：当前版本处于测试阶段，仍存在一些问题，如果存在bug，欢迎提出问题！**
 
-## Features
+## 特征
 
-转换 json 为 Rust 结构体.
+转换 json 为 Rust 结构体.（支持离线无网络使用）
 
 ## Screenshots
 
 
 
-## Usage
+## 使用方法
 
 1. 打开 VSCode.
 2. 扩展窗口搜索 `RustJson` -> 安装
@@ -30,9 +30,9 @@
 
 您可以扫描二维码给我捐赠
 
-| Paypal                                                  | Wechat                                     | Alipay/AlipayHK                            |
-|---------------------------------------------------------|--------------------------------------------|--------------------------------------------|
-| [**`Paypal`**](https://www.paypal.com/paypalme/haoyu94) | <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/wechat.jpeg" height="180" /> | <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/alipay.jpeg" height="180" /> |
+| BuyMeACoffee                                                 | Wechat/Wechat HK                                             | Alipay/AlipayHK                                              | Paypal                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/bmc_qr.png" height="180" /> | <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/wechat.jpeg" height="180" /> | <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/alipay.jpeg" height="180" /> | [**`Paypal`**](https://www.paypal.com/paypalme/haoyu94) |
 
 
 ## For Developer

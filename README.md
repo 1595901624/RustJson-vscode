@@ -14,7 +14,7 @@ suggestions.**
 
 ## Features
 
-Convert Json to Rust Struct.
+Convert Json to Rust Struct. (Support for offline use.)
 
 * Support `debug` derive
 * Support `serde` derive
@@ -31,13 +31,13 @@ Convert Json to Rust Struct.
 3. Open `Command Palette`, type `RustJson` and press Enter
 4. Input Json text and press `Generate`
 
-## Give me a Cup of Coffee
+## Buy me a Cup of Coffee
 
 And you can also give me a cup of coffee by scanning the QR code below.
 
-| Paypal                                                  | Wechat                                     | Alipay/AlipayHK                            |
-|---------------------------------------------------------|--------------------------------------------|--------------------------------------------|
-| [**`Paypal`**](https://www.paypal.com/paypalme/haoyu94) | <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/wechat.jpeg" height="180" /> | <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/alipay.jpeg" height="180" /> |
+| BuyMeACoffee                                                 | Wechat/Wechat HK                                             | Alipay/AlipayHK                                              | Paypal                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------- |
+| <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/bmc_qr.png" height="180" /> | <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/wechat.jpeg" height="180" /> | <img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/alipay.jpeg" height="180" /> | [**`Paypal`**](https://www.paypal.com/paypalme/haoyu94) |
 
 
 ## For Developer
