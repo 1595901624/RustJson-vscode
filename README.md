@@ -22,7 +22,8 @@ Convert Json to Rust Struct. (Support for offline use.)
 
 ## Screenshots
 
-
+<img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/1.png" width="50%">
+<img src="https://raw.githubusercontent.com/1595901624/RustJson-vscode/main/demo/2.png" width="50%">
 
 ## Usage
 
