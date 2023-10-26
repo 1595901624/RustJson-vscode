@@ -3,7 +3,7 @@
     <p><b>A Json to Rust Struct VSCode Extension.</b></p>
     <img src="https://img.shields.io/badge/status-developing-green.svg?style=flat" />
     <a target="_blank" href="https://github.com/1595901624/RustJson/releases">
-      <img src="https://img.shields.io/badge/latest%20version-v0.0.1.Canary-blue.svg?style=flat" />
+      <img src="https://img.shields.io/badge/latest%20version-v0.0.2.Canary-blue.svg?style=flat" />
     </a>
     <img src="https://img.shields.io/badge/license-AGPLv3-orange.svg?style=flat" />
     <p>[English]<a href="https://github.com/1595901624/RustJson-vscode/blob/main/README_CN.md"><span>[简体中文]</span></a></p>
