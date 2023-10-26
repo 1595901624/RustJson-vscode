@@ -18,6 +18,15 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "menus": {
+      "editor/context": [
+        {
+          "command": "rustjson.Rust2Json",
+          "when": "editorFocus",
+          "group": "navigation"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "rustjson.Rust2Json",
