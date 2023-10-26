@@ -43,12 +43,16 @@ And you can also give me a cup of coffee by scanning the QR code below.
 
 ## For Developer
 
+### Develop
+
 1. Install `VS Code`
 2. Clone this project
 3. Clone the `RustJsonLib` submoudle
 4. run `npm install`
 5. run `npm run watch`
 
+### Buid Extension
+vsce package
 
 ## Feedback
 

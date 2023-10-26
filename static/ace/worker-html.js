@@ -10531,11 +10531,11 @@ EventEmitter.prototype.emit = function(type) {
     if (!this._events.error ||
         (isObject(this._events.error) && !this._events.error.length)) {
       er = arguments[1];
-      if (er instanceof Error) {
-        throw er; // Unhandled 'error' event
-      } else {
-        throw TypeError('Uncaught, unspecified "error" event.');
-      }
+    //   if (er instanceof Error) {
+    //     throw er; // Unhandled 'error' event
+    //   } else {
+    //     throw TypeError('Uncaught, unspecified "error" event.');
+    //   }
       return false;
     }
   }

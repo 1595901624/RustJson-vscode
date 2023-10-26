@@ -11,3 +11,11 @@ vsc-extension-quickstart.md
 **/.eslintrc.json
 **/*.map
 **/*.ts
+RustJsonLib/**
+# dist/static/ace/theme-a*.js
+# dist/static/ace/theme-c*.js
+# dist/static/ace/theme-d*.js
+# dist/static/ace/theme-e*.js
+# dist/static/ace/theme-g*.js
+# dist/static/ace/theme-t*.js
+# dist/static/rust_json_lib_*

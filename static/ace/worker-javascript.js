@@ -14267,13 +14267,13 @@ EventEmitter.prototype.emit = function emit(type) {
   if (doError) {
     if (arguments.length > 1)
       er = arguments[1];
-    if (er instanceof Error) {
-      throw er; // Unhandled 'error' event
-    } else {
-      var err = new Error('Unhandled "error" event. (' + er + ')');
-      err.context = er;
-      throw err;
-    }
+    // if (er instanceof Error) {
+    //   throw er; // Unhandled 'error' event
+    // } else {
+    //   var err = new Error('Unhandled "error" event. (' + er + ')');
+    //   err.context = er;
+    //   throw err;
+    // }
     return false;
   }
 
