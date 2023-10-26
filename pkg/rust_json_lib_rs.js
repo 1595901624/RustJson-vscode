@@ -1,7 +1,25 @@
 let imports = {};
+imports['__wbindgen_placeholder__'] = module.exports;
 let wasm;
-const { TextEncoder, TextDecoder } = require(`util`);
+const { TextDecoder, TextEncoder } = require(`util`);
 
+let cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
+
+cachedTextDecoder.decode();
+
+let cachedUint8Memory0 = null;
+
+function getUint8Memory0() {
+    if (cachedUint8Memory0 === null || cachedUint8Memory0.byteLength === 0) {
+        cachedUint8Memory0 = new Uint8Array(wasm.memory.buffer);
+    }
+    return cachedUint8Memory0;
+}
+
+function getStringFromWasm0(ptr, len) {
+    ptr = ptr >>> 0;
+    return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
+}
 /**
 * @param {number} a
 * @param {number} b
@@ -13,15 +31,6 @@ module.exports.sum = function(a, b) {
 };
 
 let WASM_VECTOR_LEN = 0;
-
-let cachedUint8Memory0 = null;
-
-function getUint8Memory0() {
-    if (cachedUint8Memory0 === null || cachedUint8Memory0.byteLength === 0) {
-        cachedUint8Memory0 = new Uint8Array(wasm.memory.buffer);
-    }
-    return cachedUint8Memory0;
-}
 
 let cachedTextEncoder = new TextEncoder('utf-8');
 
@@ -84,15 +93,6 @@ function getInt32Memory0() {
     }
     return cachedInt32Memory0;
 }
-
-let cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true });
-
-cachedTextDecoder.decode();
-
-function getStringFromWasm0(ptr, len) {
-    ptr = ptr >>> 0;
-    return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
-}
 /**
 * @param {string} json
 * @returns {string}
@@ -114,6 +114,10 @@ module.exports.parse_json_default = function(json) {
         wasm.__wbindgen_add_to_stack_pointer(16);
         wasm.__wbindgen_free(deferred2_0, deferred2_1, 1);
     }
+};
+
+module.exports.__wbindgen_throw = function(arg0, arg1) {
+    throw new Error(getStringFromWasm0(arg0, arg1));
 };
 
 const path = require('path').join(__dirname, 'rust_json_lib_rs_bg.wasm');

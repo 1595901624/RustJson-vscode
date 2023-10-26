@@ -1,7 +1,7 @@
 {
   "name": "rust_json_lib_rs",
   "description": "A library for parsing JSON in Rust",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "files": [
     "rust_json_lib_rs_bg.wasm",
