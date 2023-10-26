@@ -6,6 +6,7 @@ const path = require('path');
 const webpack = require('webpack');
 const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const RustBuilderPlugin = require("./rust.build.js");
 // const { fileURLToPath } = require("url");
 
 // const filename = fileURLToPath(__dirname);
@@ -64,6 +65,7 @@ const extensionConfig = {
     // new WasmPackPlugin({
     //   crateDirectory: path.resolve(__dirname, '.')
     // })
+    new RustBuilderPlugin(),
     new CopyPlugin({
       patterns: [
         { from: "pkg", to: "." },
