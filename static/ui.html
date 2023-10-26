@@ -2,6 +2,7 @@
 
 <head>
     <script src="{{aceSrc}}"></script>
+    <script src="{{aceThemeMonokai}}"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.5.0/ace.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.js"></script> -->
     <style>
@@ -86,7 +87,6 @@
         const vscode = acquireVsCodeApi();
         const INNPUT_DATA = "vscode.input.data";
         const RESULT_DATA = "vscode.result.data";
-
         // 初始化编辑器
         window.onload = function () {
             // initialize the input editor
@@ -220,7 +220,7 @@
          * format button click
          * */
         function onFormatButonClick() {
-            var editor = ace.editor('editor');
+            var editor = ace.edit('input-editor');
             console.log(editor.getValue())
             editor.setValue(formatJSON(editor.getValue()));
         }
@@ -239,7 +239,7 @@
         <label for="checkbox1" class="checkbox-label">Add Option</label>
     </div> -->
     <button class="ok" onclick="onGenerateButtonClick()">Generate</button>
-    <button class="ok" onclick="onFormatButonClick()">Format</button>
+    <button class="ok" style="margin: 16px;" onclick="onFormatButonClick()">Format</button>
 
     <div>
         <h1>Result</h1>

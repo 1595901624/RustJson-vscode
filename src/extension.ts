@@ -35,12 +35,20 @@ export function activate(context: vscode.ExtensionContext) {
 			let htmlUri = vscode.Uri.joinPath(context.extensionUri, "static", 'ui.html');
 			console.log(htmlUri.fsPath);
 
+			// aceSrc
 			let aceUri = vscode.Uri.joinPath(context.extensionUri, "static", "ace", 'ace.js');
 			let aceSrc = webviewPanel.webview.asWebviewUri(aceUri);
 			console.log(aceSrc.toString());
 
+			// aceThemeMonokai
+			let aceThemeMonokaiUri = vscode.Uri.joinPath(context.extensionUri, "static", "ace", 'theme-monokai.js');
+			let aceThemeMonokai = webviewPanel.webview.asWebviewUri(aceThemeMonokaiUri);
+			console.log(aceThemeMonokai.toString());
+
 			let html = readFileSync(htmlUri.fsPath, "utf-8");
-			webviewPanel.webview.html = html.toString().replace("{{aceSrc}}", aceSrc.toString());
+			webviewPanel.webview.html = html.toString()
+				.replace("{{aceSrc}}", aceSrc.toString())
+				.replace("{{aceThemeMonokai}}", aceThemeMonokai.toString());
 			// console.log(htmlUri);
 
 			webviewPanel.webview.onDidReceiveMessage(
