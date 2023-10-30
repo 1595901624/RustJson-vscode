@@ -19,7 +19,10 @@ jobs:
         steps:
         - uses: actions/checkout@v3
 
-        - name: setup node
+        - name: Checkout Submodule
+          run: git submodule update --init
+
+        - name: Setup Node
           uses: actions/setup-node@v3
           with:
             node-version: 18
@@ -54,8 +57,8 @@ jobs:
           id: create_release
           uses: softprops/action-gh-release@master
           with:
-            tag_name: v${{ env.release_version }}_build${{ github.run_number }}
-            name: v${{ env.release_version }}
+            tag_name: build${{ github.run_number }}
+            name: v${{ github.run_number }}
             body: Public Release
             draft: false
             prerelease: false
