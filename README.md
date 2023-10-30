@@ -34,7 +34,7 @@ Convert Json to Rust Struct. (Support for offline use.)
 
 ## Buy me a Cup of Coffee
 
-And you can also give me a cup of coffee by scanning the QR code below.
+And you can also buy me a cup of coffee by scanning the QR code below.
 
 | BuyMeACoffee                                                 | Wechat/Wechat HK                                             | Alipay/AlipayHK                                              | Paypal                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------- |
@@ -49,7 +49,7 @@ And you can also give me a cup of coffee by scanning the QR code below.
 2. Clone this project
 3. Clone the `RustJsonLib` submoudle
 4. run `npm install`
-5. run `npm run watch`
+5. run `npm run compile` or `npm run watch`
 
 ### Buid Extension
 vsce package
