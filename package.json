@@ -35,18 +35,19 @@
     ]
   },
   "scripts": {
+    "build-wasm": "cd RustJsonLib && wasm-pack build --target nodejs",
     "compile": "webpack",
-    "watch": "cd RustJsonLib && wasm-pack build --target nodejs && cd .. && webpack --watch",
+    "watch": "webpack --watch",
     "package": "webpack --mode production --devtool hidden-source-map",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
-    "vscode:prepublish": "cd RustJsonLib && wasm-pack build --target nodejs && cd .. && npm run esbuild-base -- --minify",
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
     "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
-    "esbuild": "cd RustJsonLib && wasm-pack build --target nodejs && cd .. && npm run esbuild-base -- --sourcemap",
-    "esbuild-watch": "cd RustJsonLib && wasm-pack build --target nodejs && cd .. && npm run esbuild-base -- --sourcemap --watch",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "test-compile": "tsc -p ./"
   },
   "devDependencies": {
