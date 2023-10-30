@@ -22,6 +22,13 @@ jobs:
         - name: Checkout Submodule
           run: git submodule update --init
 
+        - name: Get Release Version
+          run: |
+            sudo apt-get update
+            sudo apt-get install jq
+            release_version=$(cat package.json | jq -r '.version')
+            echo "release_version=${release_version}" >> $GITHUB_ENV
+
         - name: Setup Node
           uses: actions/setup-node@v3
           with:
@@ -57,10 +64,19 @@ jobs:
           id: create_release
           uses: softprops/action-gh-release@master
           with:
-            tag_name: build${{ github.run_number }}
-            name: v${{ github.run_number }}
+            tag_name: v${{ env.release_version }}_build${{ github.run_number }}
+            name: v${{ env.release_version }}
             body: Public Release
             draft: false
             prerelease: false
             files: rust*.vsix
+
+        - name: Commit and Push Changes
+          run: |
+              git config --local user.email "haoyu3@163.com"
+              git config --local user.name "haoyu3_git"
+              git pull
+              git add .
+              git commit -m "Github Action Release"
+              git push
       
